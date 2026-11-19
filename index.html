@@ -11,7 +11,7 @@
 body{background:#eef2f7;color:var(--tx);font-family:'Cairo','Segoe UI',Tahoma,sans-serif;font-size:13px}
 .wrap{max-width:1400px;margin:0 auto;padding:14px 18px 20px}
 .hero{border-radius:14px;padding:14px 22px;background:linear-gradient(100deg,#2b2370 0%,#1e3a8a 40%,#0f766e 100%);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.hero h1{font-size:21px;font-weight:800}.hero p{color:#c7d2fe;font-size:12px}
+.hero h1{font-size:21px;font-weight:800}.hero p{color:#e0e7ff;font-size:15px;margin-top:3px}.hero p b{color:#fff;font-weight:700}
 .bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .chip{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.15);color:var(--tx);border-radius:999px;padding:3px 12px;cursor:pointer;font-family:inherit;font-size:12px}
 .chip.on{background:rgba(13,148,136,.12);border-color:var(--teal);color:#0d9488}
@@ -67,7 +67,7 @@ table.d tfoot td{position:sticky;bottom:0;background:var(--card);font-weight:800
 <body>
 <div class="wrap">
   <div class="hero">
-    <div><h1>تقرير الموردين والمديونيات</h1><p>من 1-1-2026 إلى <span class="d33"></span> • مصدر البيانات: الأستاذ محمد عبد العزيز • إعداد التقرير: حازم حسن</p></div>
+    <div><h1>تقرير الموردين والمديونيات</h1><p>من 1-1-2026 إلى <span class="d33"></span> • مصدر البيانات: <b>الأستاذ محمد عبد العزيز</b> • إعداد التقرير: <b>حازم حسن</b></p></div>
     <div class="bar"><div class="bar" id="coChips"></div><select id="mSel"></select></div>
   </div>
   <div class="kpis" id="kpis"></div>
@@ -152,7 +152,6 @@ function wf(id,vals,inv){
   if(av.length<2){x.fillStyle='#475569';x.textAlign='center';x.textBaseline='middle';x.fillText('اختر شهراً بعد يناير لعرض التغيرات',w/2,h/2);return}
   const bars=[{i:av[0],lab:MO[av[0]],y0:null,y1:vals[av[0]],tot:1}];
   for(let k=1;k<av.length;k++){const i=av[k],p=av[k-1];bars.push({i,p,lab:MO[i],y0:vals[p],y1:vals[i]})}
-  const last=av[av.length-1];bars.push({i:last,lab:MO[last],y0:null,y1:vals[last],tot:1,end:1});
   const ys=bars.flatMap(b=>b.tot?[b.y1]:[b.y0,b.y1]);let lo=Math.min(...ys),hi=Math.max(...ys);const pad=(hi-lo)*.35||hi*.1;lo=Math.max(0,lo-pad);hi+=pad*.5;
   const Y=v=>P.t+(h-P.t-P.b)*(1-(v-lo)/(hi-lo));const n=bars.length,cw=(w-P.l-P.r)/n,bw=Math.min(26,cw*.62);
   bars.forEach((b,k)=>{const cx=P.l+cw*k,bx=cx+(cw-bw)/2;let top,bot,col,lbl;
